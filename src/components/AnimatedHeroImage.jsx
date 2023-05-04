@@ -1,13 +1,13 @@
 import { useSpring, animated } from "react-spring";
 import Image from "next/image";
 import styled from "styled-components";
-
+import styles from '../../styles/Home.module.css'
 
 const AnimatedImage = ({ src, alt, springProps, style, sizes, width, height, fill, ...rest }) => {
   const props = useSpring(springProps);
 
   return (
-    <StyledAnimatedImage className="animated-image" style={{ ...style, ...props }} >
+    <StyledAnimatedImage className={styles.animated_image} style={{ ...style, ...props }} >
       <Image
         src={src}
         alt={alt}
