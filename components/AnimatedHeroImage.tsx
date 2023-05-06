@@ -16,7 +16,7 @@ const AnimatedImage = ({
 }: {
   src: string;
   alt: string;
-  springProps: any;
+  springProps?: any;
   style?: any;
   sizes?: string;
   width?: any;
