@@ -4,7 +4,10 @@ backend:
   branch: main # Branch to update (optional; defaults to master)
   api_root: https://api.github.com # Use the GitHub API instead of GitLab's API
   token: ${{ env.GITHUB_API_TOKEN }} # Your GitHub API token
-  # token: ${{ env.GITHUB_API_TOKEN }} # Your GitHub API token
+  site_domain: location.hostname
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+  cms_label_prefix: netlify-cms/
 media_folder: public/img
 public_folder: img
 collections:
