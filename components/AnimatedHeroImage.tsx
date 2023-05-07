@@ -1,6 +1,5 @@
 import { useSpring, animated } from "react-spring";
 import Image from "next/image";
-import styled from "styled-components";
 import styles from "../styles/Home.module.css";
 
 const AnimatedImage = ({
@@ -29,9 +28,9 @@ const AnimatedImage = ({
   const props = useSpring(springProps);
 
   return (
-    <StyledAnimatedImage
+    <animated.div
       className={className + " " + styles.animated_image}
-      style={{ ...style, ...props }}
+      style={{ position: "relative", overflow: "hidden", ...style, ...props }}
     >
       <Image
         className={imgClassName}
@@ -45,13 +44,8 @@ const AnimatedImage = ({
         style={{ objectFit: "cover" }}
         quality={100}
       />
-    </StyledAnimatedImage>
+    </animated.div>
   );
 };
 
 export default AnimatedImage;
-
-const StyledAnimatedImage = styled(animated.div)`
-  position: relative;
-  overflow: hidden;
-`;

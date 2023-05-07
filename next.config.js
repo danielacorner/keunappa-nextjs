@@ -10,7 +10,18 @@ const nextConfig = {
       }
     )
     return cfg
-  }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.coupangcdn.com',
+        port: '',
+        pathname: '/thumbnails/remote/**',
+      },
+    ],
+  },
+
 }
 
 module.exports = nextConfig

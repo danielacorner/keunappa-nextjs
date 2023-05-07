@@ -26,6 +26,7 @@ export const getStaticProps = async () => {
     "stars",
     "reviews",
     "image_url",
+    "url",
   ]);
 
   return {

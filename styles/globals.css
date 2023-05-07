@@ -10,6 +10,9 @@
 .animate-scrolling-grid {
   animation: scrollingGrid 10s linear infinite;
 }
+.animate-scrolling-grid-reverse {
+  animation: scrollingGridReverse 10s linear infinite;
+}
 
 @keyframes scrollingGrid {
   0% {
@@ -17,6 +20,14 @@
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+@keyframes scrollingGridReverse {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
   }
 }
 

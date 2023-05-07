@@ -2,58 +2,15 @@ import AnimatedImage from "./AnimatedHeroImage";
 import styles from "../styles/Home.module.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-
-const Content = ({ allPosts }) => {
-  // Dynamically import all .md files using Webpack's require.context
-  const content = allPosts.map(
-    (data: {
-      title: string;
-      price: string;
-      stars: string;
-      reviews: string;
-      image_url: string;
-    }) => {
-      return (
-        <div key={data.title}>
-          <h2>{data.title}</h2>
-          <ul>
-            <li>Price: {data.price}</li>
-            <li>Stars: {data.stars}</li>
-            <li>Reviews: {data.reviews}</li>
-            <li>Image URL: {data.image_url}</li>
-          </ul>
-        </div>
-      );
-    }
-  );
-
-  return <div>{content}</div>;
-};
+import Image from "next/image";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const offset = 200;
-const delay = 300;
-const IMAGES = [
-  {
-    image: "/images/래시플_남성용_루즈핏박시_래쉬가드_상하의_세트.jpg",
-    href: "",
-  },
-  {
-    image: "/images/래시플 프리미엄 극세사 전동휠체어용 무릎담요 입는담요.jpg",
-    href: "",
-  },
-  {
-    image:
-      "/images/래시플 여성엄마 가오리 루즈핏 래쉬가드 빅사이즈수영복 stripe.jpg",
-    href: "",
-  },
-];
-
 export default function HomePageContent({ allPosts }) {
+  const images_row_1 = allPosts.slice(0, 8);
+  const images_row_2 = allPosts.slice(8, 16);
   return (
     <main className={`${styles.main} ${inter.className}`}>
-      <Content {...{ allPosts }} />
       <AnimatedImage
         alt="RASH PL brand banner"
         style={{
@@ -63,7 +20,7 @@ export default function HomePageContent({ allPosts }) {
         className={styles.banner}
         src={"/images/rash_pl_brand_banner.jpg"}
         springProps={{
-          from: { opacity: 0, transform: "translate3d(0, 100%, 0)" },
+          from: { opacity: 0, transform: "translate3d(0, 20%, 0)" },
           to: { opacity: 1, transform: "translate3d(0, 0%, 0)" },
           config: {
             mass: 1,
@@ -96,53 +53,81 @@ export default function HomePageContent({ allPosts }) {
           </nav>
         </header>
 
-        <main className="flex flex-col justify-center items-center h-full">
+        <div className="flex flex-col justify-center items-center h-full overflow-hidden">
           <div className="text-center text-white">
             <h1 className="text-6xl font-bold">RASH PL.</h1>
             <p className="text-xl mt-4">
-              Discover the latest trends in fashion
+              Fashion that{"'"}s both stylish and practical.
             </p>
           </div>
-          <div className="overflow-hidden mt-8 w-full">
-            <div className="scrolling-grid w-full animate-scrolling-grid">
-              {IMAGES.map(({ image, href }, index) => (
-                <div
-                  key={`first-set-${index}`}
-                  className="relative w-1/3 inline-block"
-                >
-                  <Link href={href}>
-                    <AnimatedImage
-                      src={image}
-                      alt={image}
-                      className="m-8 box-border h-full pt-full"
-                      imgClassName="rounded-lg shadow-lg overflow-hidden"
-                    />
-                  </Link>
-                </div>
-              ))}
-              {IMAGES.map(({ image, href }, index) => (
-                <div
-                  key={`second-set-${index}`}
-                  className="relative w-1/3 inline-block"
-                >
-                  <Link href={href}>
-                    <AnimatedImage
-                      src={image}
-                      alt={image}
-                      className="m-8 box-border h-full pt-full"
-                      imgClassName="rounded-lg shadow-lg overflow-hidden"
-                    />
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </main>
+          <LoopingImages images={images_row_1} />
+          <LoopingImages images={images_row_2} reverse={true} />
+        </div>
 
         <footer className="p-6 flex justify-center items-center">
           <p className="text-white">© 2023 RASH PL. All Rights Reserved.</p>
         </footer>
       </div>
     </main>
+  );
+}
+
+function LoopingImages({ images, reverse = false }) {
+  return (
+    <div
+      className={`mt-8 w-full h-96 animate-scrolling-grid${
+        reverse ? "-reverse" : ""
+      }`}
+    >
+      <div className={`scrolling-grid w-full`}>
+        {images
+          .filter((d) => d.url)
+          .map(({ title, price, stars, reviews, image_url, url }, index) => (
+            <ImageInRow
+              key={index}
+              index={index}
+              url={url}
+              image_url={image_url}
+              title={title}
+            />
+          ))}
+        {images
+          .filter((d) => d.url)
+          .map(({ title, price, stars, reviews, image_url, url }, index) => (
+            <ImageInRow
+              key={index}
+              index={index}
+              url={url}
+              image_url={image_url}
+              title={title}
+            />
+          ))}
+      </div>
+    </div>
+  );
+}
+
+function ImageInRow({ index, url, image_url, title }) {
+  return (
+    <div
+      key={`first-set-${index}`}
+      className="relative inline-block m-2 box-border h-96 w-36"
+    >
+      <Link href={url}>
+        <Image
+          src={image_url}
+          alt={title}
+          // width={128}
+          // height={128}
+          fill={true}
+          sizes={"(max-width: 768px) 100vw, 768px"} // width={"100"}
+          style={{
+            objectFit: "cover",
+          }}
+          quality={100}
+          className="rounded-lg overflow-hidden pt-full"
+        />
+      </Link>
+    </div>
   );
 }
