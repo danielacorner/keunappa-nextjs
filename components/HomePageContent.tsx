@@ -1,8 +1,34 @@
 import AnimatedImage from "./AnimatedHeroImage";
 import styles from "../styles/Home.module.css";
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+
+const Content = ({ allPosts }) => {
+  // Dynamically import all .md files using Webpack's require.context
+  const content = allPosts.map(
+    (data: {
+      title: string;
+      price: string;
+      stars: string;
+      reviews: string;
+      image_url: string;
+    }) => {
+      return (
+        <div key={data.title}>
+          <h2>{data.title}</h2>
+          <ul>
+            <li>Price: {data.price}</li>
+            <li>Stars: {data.stars}</li>
+            <li>Reviews: {data.reviews}</li>
+            <li>Image URL: {data.image_url}</li>
+          </ul>
+        </div>
+      );
+    }
+  );
+
+  return <div>{content}</div>;
+};
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,9 +50,10 @@ const IMAGES = [
   },
 ];
 
-export default function HomePageContent() {
+export default function HomePageContent({ allPosts }) {
   return (
     <main className={`${styles.main} ${inter.className}`}>
+      <Content {...{ allPosts }} />
       <AnimatedImage
         alt="RASH PL brand banner"
         style={{
