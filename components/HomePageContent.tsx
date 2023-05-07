@@ -9,15 +9,42 @@ const inter = Inter({ subsets: ["latin"] });
 const offset = 200;
 const delay = 300;
 const IMAGES = [
-  "/images/래시플_남성용_루즈핏박시_래쉬가드_상하의_세트.jpg",
-  "/images/래시플 프리미엄 극세사 전동휠체어용 무릎담요 입는담요.jpg",
-  "/images/래시플 여성엄마 가오리 루즈핏 래쉬가드 빅사이즈수영복 stripe.jpg",
+  {
+    image: "/images/래시플_남성용_루즈핏박시_래쉬가드_상하의_세트.jpg",
+    href: "",
+  },
+  {
+    image: "/images/래시플 프리미엄 극세사 전동휠체어용 무릎담요 입는담요.jpg",
+    href: "",
+  },
+  {
+    image:
+      "/images/래시플 여성엄마 가오리 루즈핏 래쉬가드 빅사이즈수영복 stripe.jpg",
+    href: "",
+  },
 ];
 
 export default function HomePageContent() {
   return (
     <main className={`${styles.main} ${inter.className}`}>
-      {/* <HomeContent /> */}
+      <AnimatedImage
+        alt="RASH PL brand banner"
+        style={{
+          height: "16vh",
+          width: "100vw",
+        }}
+        className={styles.banner}
+        src={"/images/rash_pl_brand_banner.jpg"}
+        springProps={{
+          from: { opacity: 0, transform: "translate3d(0, 100%, 0)" },
+          to: { opacity: 1, transform: "translate3d(0, 0%, 0)" },
+          config: {
+            mass: 1,
+            tension: 280,
+            friction: 60,
+          },
+        }}
+      />
       <div className="h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
         <header className="p-6 flex justify-between items-center">
           <div className="text-white text-2xl font-bold">RASH PL.</div>
@@ -51,28 +78,34 @@ export default function HomePageContent() {
           </div>
           <div className="overflow-hidden mt-8 w-full">
             <div className="scrolling-grid w-full animate-scrolling-grid">
-              {IMAGES.map((image, index) => (
+              {IMAGES.map(({ image, href }, index) => (
                 <div
                   key={`first-set-${index}`}
-                  className="relative h-96 w-1/3 inline-block rounded-lg overflow-hidden"
+                  className="relative w-1/3 inline-block"
                 >
-                  <AnimatedImage
-                    src={image}
-                    alt={image}
-                    className="p-8 box-border h-full"
-                  />
+                  <Link href={href}>
+                    <AnimatedImage
+                      src={image}
+                      alt={image}
+                      className="m-8 box-border h-full pt-full"
+                      imgClassName="rounded-lg shadow-lg overflow-hidden"
+                    />
+                  </Link>
                 </div>
               ))}
-              {IMAGES.map((image, index) => (
+              {IMAGES.map(({ image, href }, index) => (
                 <div
                   key={`second-set-${index}`}
-                  className="relative h-96 w-1/3 inline-block rounded-lg overflow-hidden"
+                  className="relative w-1/3 inline-block"
                 >
-                  <AnimatedImage
-                    src={image}
-                    alt={image}
-                    className="p-8 box-border h-full"
-                  />
+                  <Link href={href}>
+                    <AnimatedImage
+                      src={image}
+                      alt={image}
+                      className="m-8 box-border h-full pt-full"
+                      imgClassName="rounded-lg shadow-lg overflow-hidden"
+                    />
+                  </Link>
                 </div>
               ))}
             </div>
@@ -83,24 +116,6 @@ export default function HomePageContent() {
           <p className="text-white">© 2023 RASH PL. All Rights Reserved.</p>
         </footer>
       </div>
-      <AnimatedImage
-        alt="RASH PL brand banner"
-        style={{
-          height: "16vh",
-          width: "100vw",
-        }}
-        className={styles.banner}
-        src={"/images/rash_pl_brand_banner.jpg"}
-        springProps={{
-          from: { transform: "translate3d(-100%, 0, 0)" },
-          to: { transform: "translate3d(0, 0, 0)" },
-          config: {
-            mass: 1,
-            tension: 280,
-            friction: 60,
-          },
-        }}
-      />
     </main>
   );
 }

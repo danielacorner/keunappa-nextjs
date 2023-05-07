@@ -13,6 +13,7 @@ const AnimatedImage = ({
   height,
   fill,
   className,
+  imgClassName,
 }: {
   src: string;
   alt: string;
@@ -23,6 +24,7 @@ const AnimatedImage = ({
   height?: any;
   fill?: any;
   className?: string;
+  imgClassName?: string;
 }) => {
   const props = useSpring(springProps);
 
@@ -32,6 +34,7 @@ const AnimatedImage = ({
       style={{ ...style, ...props }}
     >
       <Image
+        className={imgClassName}
         src={src}
         alt={alt}
         width={width}
