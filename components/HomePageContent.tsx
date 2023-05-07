@@ -3,6 +3,8 @@ import styles from "../styles/Home.module.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import Image from "next/image";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,38 +25,17 @@ export default function HomePageContent({ allPosts }) {
         className={styles.banner}
         src={"/images/rash_pl_brand_banner.jpg"}
         springProps={{
-          from: { opacity: 0, transform: "translate3d(0, 20%, 0)" },
-          to: { opacity: 1, transform: "translate3d(0, 0%, 0)" },
+          from: { opacity: 0, transform: "translate3d(-25%, 0, 0)" },
+          to: { opacity: 1, transform: "translate3d(0%, 0, 0)" },
           config: {
             mass: 1,
             tension: 280,
-            friction: 60,
+            friction: 50,
           },
         }}
       />
       <div className="flex-grow h-fit bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex flex-col">
-        <header className="p-6 flex justify-between items-center">
-          <div className="text-white text-2xl font-bold">RASH PL.</div>
-          <nav>
-            <ul className="flex space-x-6">
-              <li>
-                <Link href="/스포츠의류">
-                  <span className="text-white">스포츠의류</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/비치웨어/래쉬가드">
-                  <span className="text-white">비치웨어/래쉬가드</span>
-                </Link>
-              </li>
-              <li>
-                <Link href="/수영복/래쉬가드">
-                  <span className="text-white">수영복/래쉬가드</span>
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
+        <Header />
 
         <div className="flex-grow flex flex-col justify-center items-center h-full overflow-hidden">
           <div className="flex-grow flex flex-col justify-center text-center text-white">
@@ -67,9 +48,7 @@ export default function HomePageContent({ allPosts }) {
           <LoopingImages images={images_row_2} reverse={true} />
         </div>
 
-        <footer className="p-6 flex justify-center items-end">
-          <p className="text-white">© 2023 RASH PL. All Rights Reserved.</p>
-        </footer>
+        <Footer />
       </div>
     </main>
   );
@@ -114,7 +93,7 @@ function ImageInRow({ index, url, image_url, title }) {
   return (
     <div
       key={`first-set-${index}`}
-      className="relative inline-block m-2 box-border h-80 w-36"
+      className={`relative inline-block m-2 box-border h-80 w-36 ${styles.hover_highlight}`}
     >
       <Link href={url}>
         <Image

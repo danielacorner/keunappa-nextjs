@@ -52,7 +52,33 @@
   align-items: center;
   justify-items: center;
 }
-
+.hover_highlight {
+  transition: background 200ms, border 200ms, transform 200ms;
+}
+.hover_highlight:hover {
+  transform: scale(1.02);
+}
+.hover_highlight::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1),
+    rgba(255, 255, 255, 0.3)
+  );
+  opacity: 0.1;
+  transition: opacity 200ms;
+  pointer-events: none;
+  border-radius: var(--border-radius);
+}
+.hover_highlight:hover::after {
+  opacity: 1;
+}
 .card {
   border-radius: var(--border-radius);
   background: rgba(var(--card-rgb), 0);

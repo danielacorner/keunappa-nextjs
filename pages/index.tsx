@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Script from "next/script";
 import HomePageContent from "../components/HomePageContent";
-import { getAllPosts } from "./api/api";
+import { getHomepagePosts } from "./api/api";
 
 export default function Home({ allPosts }) {
   return (
@@ -20,7 +20,7 @@ export default function Home({ allPosts }) {
 }
 
 export const getStaticProps = async () => {
-  const allPosts = getAllPosts([
+  const allPosts = getHomepagePosts([
     "title",
     "price",
     "stars",
