@@ -10,7 +10,10 @@ export default function HomePageContent({ allPosts }) {
   const images_row_1 = allPosts.slice(0, 8);
   const images_row_2 = allPosts.slice(8, 16);
   return (
-    <main className={`${styles.main} ${inter.className}`}>
+    <main
+      style={{ minHeight: "100vh" }}
+      className={`${styles.main} ${inter.className}`}
+    >
       <AnimatedImage
         alt="RASH PL brand banner"
         style={{
@@ -29,7 +32,7 @@ export default function HomePageContent({ allPosts }) {
           },
         }}
       />
-      <div className="h-screen bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+      <div className="flex-grow h-fit bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex flex-col">
         <header className="p-6 flex justify-between items-center">
           <div className="text-white text-2xl font-bold">RASH PL.</div>
           <nav>
@@ -53,18 +56,18 @@ export default function HomePageContent({ allPosts }) {
           </nav>
         </header>
 
-        <div className="flex flex-col justify-center items-center h-full overflow-hidden">
-          <div className="text-center text-white">
+        <div className="flex-grow flex flex-col justify-center items-center h-full overflow-hidden">
+          <div className="flex-grow flex flex-col justify-center text-center text-white">
             <h1 className="text-6xl font-bold">RASH PL.</h1>
             <p className="text-xl mt-4">
               Fashion that{"'"}s both stylish and practical.
             </p>
           </div>
-          <LoopingImages images={images_row_1} />
+          <LoopingImages images={images_row_1} className="items-end" />
           <LoopingImages images={images_row_2} reverse={true} />
         </div>
 
-        <footer className="p-6 flex justify-center items-center">
+        <footer className="p-6 flex justify-center items-end">
           <p className="text-white">© 2023 RASH PL. All Rights Reserved.</p>
         </footer>
       </div>
@@ -72,14 +75,14 @@ export default function HomePageContent({ allPosts }) {
   );
 }
 
-function LoopingImages({ images, reverse = false }) {
+function LoopingImages({ images, reverse = false, className = "" }) {
   return (
     <div
-      className={`mt-8 w-full h-96 animate-scrolling-grid${
+      className={`flex self-start w-fit h-96 animate-scrolling-grid${
         reverse ? "-reverse" : ""
-      }`}
+      } ${className}`}
     >
-      <div className={`scrolling-grid w-full`}>
+      <div className={`scrolling-grid w-fit`}>
         {images
           .filter((d) => d.url)
           .map(({ title, price, stars, reviews, image_url, url }, index) => (
@@ -111,7 +114,7 @@ function ImageInRow({ index, url, image_url, title }) {
   return (
     <div
       key={`first-set-${index}`}
-      className="relative inline-block m-2 box-border h-96 w-36"
+      className="relative inline-block m-2 box-border h-80 w-36"
     >
       <Link href={url}>
         <Image
@@ -125,7 +128,7 @@ function ImageInRow({ index, url, image_url, title }) {
             objectFit: "cover",
           }}
           quality={100}
-          className="rounded-lg overflow-hidden pt-full"
+          className="rounded-lg overflow-hidden"
         />
       </Link>
     </div>
