@@ -30,6 +30,37 @@
     transform: translateX(0%);
   }
 }
+.hover_underline {
+  cursor: pointer;
+  position: relative;
+  /* transform: scale(1); */
+}
+.hover_underline:after {
+  transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  position: absolute;
+  content: "";
+  height: 1px;
+  background: currentColor;
+  bottom: 0px;
+  width: 100%;
+  left: 0%;
+  transform: scale(0);
+}
+.click_padding {
+  padding: 0.5em;
+  margin: -0.5em;
+}
+.hover_underline:hover:after {
+  transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+  transform: scaleX(1);
+}
+.hover_zoom {
+  transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.hover_zoom:hover {
+  transform: scale(1.08);
+  transition: transform 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
 
 .pt-full {
   padding-top: 100%;
