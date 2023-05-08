@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
     "image_url",
     "url",
   ]);
-  const allCollections = getAllCollections(["title", "slug"]);
+  const allCollections = getAllCollections(["title", "slug", "order"]);
 
   return {
     props: { allPosts, allCollections },

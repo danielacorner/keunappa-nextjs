@@ -4,10 +4,6 @@ import { Header } from "../../components/Header";
 
 export async function getStaticPaths() {
   const allCollections = getAllCollections(["title", "slug"]);
-  console.log(
-    "⭐🎈  file: [collection].tsx:8  getStaticProps  allCollections:",
-    allCollections
-  );
   return {
     paths: allCollections.map(
       (collection) => `/collections/${collection.title}`
@@ -17,11 +13,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const allCollections = getAllCollections(["title", "slug"]);
-  console.log(
-    "⭐🎈  file: [collection].tsx:8  getStaticProps  allCollections:",
-    allCollections
-  );
+  const allCollections = getAllCollections(["title", "slug", "order"]);
+
   const thisCollection = await getCollectionBySlug(params.collection, [
     "title",
     "slug",
@@ -37,11 +30,11 @@ export async function getStaticProps({ params }) {
 
 export default function Collection({ thisCollection, allCollections }) {
   console.log(
-    "⭐🎈  file: [collection].tsx:15  Collection  thisCollection:",
+    "⭐🎈  file: [collection].tsx:32  Collection  thisCollection:",
     thisCollection
   );
   return (
-    <>
+    <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
       <Header {...{ allCollections }} />
       <div className="flex flex-col items-center justify-center min-h-screen py-2">
         <main className="flex flex-col items-center w-full flex-1 px-20 text-center">
@@ -54,9 +47,16 @@ export default function Collection({ thisCollection, allCollections }) {
             </div>
           </div>
         </main>
-
+        {thisCollection.items.map((itemName) => (
+          <div
+            key={itemName}
+            className="flex flex-col items-center w-full flex-1 px-20 text-center"
+          >
+            {itemName}
+          </div>
+        ))}
         <Footer />
       </div>
-    </>
+    </div>
   );
 }

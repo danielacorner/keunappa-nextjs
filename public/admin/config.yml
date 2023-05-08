@@ -70,3 +70,10 @@ collections:
           hint: "This will be used as the preview image for this collection.",
           required: false,
         }
+      - {
+          name: order,
+          label: Order,
+          widget: number,
+          hint: "This will be used to order the collections on the home page. The collection with the lowest number will be first.",
+          required: false,
+        }
