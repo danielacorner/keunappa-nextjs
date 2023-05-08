@@ -26,7 +26,7 @@ export default function HomePageContent({
         <div className="flex-grow flex flex-col justify-center items-center h-full overflow-hidden">
           <div className="flex-grow flex flex-col justify-center text-center text-white">
             <h1 className="text-6xl font-bold">RASH PL.</h1>
-            <h2 className="text-xl mt-4">
+            <h2 className="text-xl mt-4 mx-8">
               스타일리시함과 실용성을 동시에 갖춘 패션.
             </h2>
           </div>

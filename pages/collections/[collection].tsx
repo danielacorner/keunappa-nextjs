@@ -45,6 +45,10 @@ export async function getStaticProps({ params }) {
     ])
   );
   const ourPurpose = await getOurPurpose();
+  console.log(
+    "⭐🎈  file: [collection].tsx:48  getStaticProps  ourPurpose:",
+    ourPurpose
+  );
 
   return {
     props: {

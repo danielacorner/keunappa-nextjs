@@ -32,7 +32,7 @@ export function Header({
           <div className="text-white text-2xl font-bold">RASH PL.</div>
         </Link>
         <nav>
-          <ul className="flex flex-wrap space-x-6">
+          <ul className="max-w-7xl flex flex-wrap space-x-6 justify-end">
             {allCollections
               .sort((a, b) => a.order - b.order)
               .map(({ title, title_display }) => (
