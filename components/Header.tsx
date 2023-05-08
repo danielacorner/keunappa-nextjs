@@ -11,7 +11,7 @@ export function Header({ allCollections }) {
           {allCollections
             .sort((a, b) => a.order - b.order)
             .map(({ title, slug }) => (
-              <li key={slug} className="click_padding hover_underline">
+              <li key={title} className="click_padding hover_underline">
                 <Link href={`/collections/${slug}`}>
                   <span className="text-white">{title}</span>
                 </Link>

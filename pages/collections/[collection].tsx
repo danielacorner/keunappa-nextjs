@@ -13,12 +13,20 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const allCollections = getAllCollections(["title", "slug", "order"]);
+  const allCollections = getAllCollections([
+    "title",
+    "title_display",
+    "description",
+    "items",
+    "order",
+  ]);
 
   const thisCollection = await getCollectionBySlug(params.collection, [
     "title",
-    "slug",
+    "title_display",
+    "description",
     "items",
+    "order",
   ]);
   return {
     props: {
@@ -29,6 +37,10 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Collection({ thisCollection, allCollections }) {
+  console.log(
+    "⭐🎈  file: [collection].tsx:32  Collection  allCollections:",
+    allCollections
+  );
   console.log(
     "⭐🎈  file: [collection].tsx:32  Collection  thisCollection:",
     thisCollection
