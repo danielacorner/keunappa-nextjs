@@ -17,16 +17,35 @@ collections:
     create: true
     fields:
       - { name: title, label: Title, widget: string }
-      - { name: price, label: Price, widget: number }
       - { name: primary_store_url, label: URL to store page, widget: string }
-      - { name: preview_image_url, label: Preview image URL, widget: string }
+      - {
+          name: preview_image_url,
+          label: Preview image URL,
+          widget: string,
+          hint: "This will be used as the preview image for this item.",
+        }
+      - {
+          name: more_preview_image_urls,
+          label: More preview image URLs,
+          widget: list,
+          field:
+            { name: more_preview_image_url, label: Ingredient, widget: string },
+          hint: "These will be used as more preview images for this item on the item details page.",
+        }
       - { name: description, label: Description, widget: markdown }
+      - { name: price, label: Price, widget: number, required: false }
   - name: "collections"
     label: "Collections"
     folder: _collections
     create: true
     fields:
-      - { name: title, label: Collection Title, widget: string }
+      - { name: title, label: Collection title, widget: string }
+      - {
+          name: slug,
+          label: Collection url,
+          widget: string,
+          hint: "This will be used to generate the URL for this collection. It should be unique and not contain spaces or special characters.",
+        }
       - { name: description, label: Collection Description, widget: markdown }
       - {
           name: items,
@@ -34,6 +53,14 @@ collections:
           widget: relation,
           collection: items,
           multiple: true,
-          value_field: "{{slug}}",
+          valueField: "{{slug}}",
           display_fields: ["title", "price"],
+          searchFields: ["title"],
+        }
+      - {
+          name: preview_image_url,
+          label: Preview image URL,
+          widget: string,
+          hint: "This will be used as the preview image for this collection.",
+          required: false,
         }

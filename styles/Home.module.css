@@ -150,7 +150,7 @@
   }
 
   .card:hover span {
-    transform: translateX(4px);
+    transform: translate3d(4px, 0, 0);
   }
 }
 
