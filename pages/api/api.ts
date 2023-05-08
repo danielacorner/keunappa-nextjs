@@ -121,6 +121,25 @@ export function getCollectionBySlug(slug: string, fields: string[] = []) {
 
   return items;
 }
+export function getOurPurpose() {
+  const fullPath = join("_purpose", `우리의-목적.md`);
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
+
+  type Items = {
+    [key: string]: string;
+  };
+
+  const items: Items = {};
+
+  // Ensure only the minimal needed data is exposed
+  items["content"] = content;
+  items["image"] = data.image;
+  items["title"] = data.title;
+  items["description"] = data.description;
+
+  return items;
+}
 
 export function getHomepagePosts(fields: string[] = []) {
   const slugs = getHomepagePostSlugs();

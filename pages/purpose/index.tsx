@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Script from "next/script";
-import HomePageContent from "../components/HomePageContent";
-import { getAllCollections, getHomepagePosts } from "./api/api";
+import { getAllCollections, getOurPurpose } from "../api/api";
+import { Header } from "../../components/Header";
 
-export default function Home({ allPosts, allCollections }) {
+export default function Purpose({ ourPurpose, allCollections }) {
   return (
     <>
       <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></Script>
@@ -17,28 +17,30 @@ export default function Home({ allPosts, allCollections }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomePageContent {...{ allPosts, allCollections }} />
+      <div className="content bg-gradient-to-r from-orange-500 to-blue-500">
+        <Header {...{ allCollections, ourPurpose }} />
+        <main>
+          <div className="flex flex-col items-center justify-start min-h-screen py-8 px-16">
+            <h1 className="text-6xl font-bold">{ourPurpose.title}</h1>
+            <p className="mt-12 text-2xl">{ourPurpose.description}</p>
+          </div>
+        </main>
+      </div>
     </>
   );
 }
 
 export const getStaticProps = async () => {
-  const allPosts = getHomepagePosts([
-    "title",
-    "price",
-    "stars",
-    "reviews",
-    "image_url",
-    "url",
-  ]);
+  const ourPurpose = getOurPurpose();
   const allCollections = getAllCollections([
     "title",
     "title_display",
-    "slug",
+    "description",
+    "items",
     "order",
   ]);
 
   return {
-    props: { allPosts, allCollections },
+    props: { ourPurpose, allCollections },
   };
 };

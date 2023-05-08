@@ -5,13 +5,13 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Layout({ children, allCollections }) {
+export default function Layout({ children, allCollections, ourPurpose }) {
   return (
     <main
       style={{ minHeight: "100vh" }}
       className={`${styles.main} ${inter.className}`}
     >
-      <Header {...{ allCollections }} />
+      <Header {...{ allCollections, ourPurpose }} />
       {children}
       <Footer />
     </main>
