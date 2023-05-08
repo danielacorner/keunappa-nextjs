@@ -39,12 +39,18 @@ collections:
     folder: _collections
     create: true
     fields:
-      - { name: title, label: Collection title, widget: string }
       - {
-          name: slug,
-          label: Collection url,
+          name: title,
+          label: Collection url title,
           widget: string,
           hint: "This will be used to generate the URL for this collection. It should be unique and not contain spaces or special characters.",
+        }
+      - {
+          name: title_display,
+          label: Collection display title,
+          widget: string,
+          required: false,
+          hint: "This will be used as the title for this collection.",
         }
       - { name: description, label: Collection Description, widget: markdown }
       - {

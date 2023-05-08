@@ -1,7 +1,20 @@
-import Head from "next/head";
 import { Footer } from "../../components/Footer";
 import { getAllCollections, getCollectionBySlug } from "../api/api";
 import { Header } from "../../components/Header";
+
+export async function getStaticPaths() {
+  const allCollections = getAllCollections(["title", "slug"]);
+  console.log(
+    "⭐🎈  file: [collection].tsx:8  getStaticProps  allCollections:",
+    allCollections
+  );
+  return {
+    paths: allCollections.map(
+      (collection) => `/collections/${collection.title}`
+    ),
+    fallback: false,
+  };
+}
 
 export async function getStaticProps({ params }) {
   const allCollections = getAllCollections(["title", "slug"]);
