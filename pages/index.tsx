@@ -1,9 +1,9 @@
 import Head from "next/head";
 import Script from "next/script";
 import HomePageContent from "../components/HomePageContent";
-import { getAllCollections, getHomepagePosts } from "./api/api";
+import { getAllCollections, getHomepagePosts, getOurPurpose } from "./api/api";
 
-export default function Home({ allPosts, allCollections }) {
+export default function Home({ allPosts, allCollections, ourPurpose }) {
   return (
     <>
       <Script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></Script>
@@ -17,7 +17,7 @@ export default function Home({ allPosts, allCollections }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <HomePageContent {...{ allPosts, allCollections }} />
+      <HomePageContent {...{ allPosts, allCollections, ourPurpose }} />
     </>
   );
 }
@@ -37,8 +37,8 @@ export const getStaticProps = async () => {
     "slug",
     "order",
   ]);
-
+  const ourPurpose = getOurPurpose();
   return {
-    props: { allPosts, allCollections },
+    props: { allPosts, allCollections, ourPurpose },
   };
 };
