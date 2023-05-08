@@ -2,19 +2,7 @@ import Link from "next/link";
 import AnimatedImage from "./AnimatedImage";
 import styles from "../styles/Home.module.css";
 
-export function Header({
-  allCollections,
-  bannerSpringProps = {
-    from: { opacity: 0, transform: "translate3d(-10%, 0, 0)" },
-    to: { opacity: 1, transform: "translate3d(0%, 0, 0)" },
-    config: {
-      mass: 1,
-      tension: 280,
-      friction: 50,
-    },
-  },
-  ourPurpose,
-}) {
+export function Header({ allCollections, bannerSpringProps = {}, ourPurpose }) {
   return (
     <>
       <AnimatedImage
@@ -32,7 +20,7 @@ export function Header({
           <div className="text-white text-2xl font-bold">RASH PL.</div>
         </Link>
         <nav>
-          <ul className="max-w-7xl flex flex-wrap space-x-6 justify-end">
+          <ul className="max-w-7xl flex flex-wrap space-x-6 gap-y-4 justify-end">
             {allCollections
               .sort((a, b) => a.order - b.order)
               .map(({ title, title_display }) => (

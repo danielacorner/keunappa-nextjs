@@ -21,7 +21,21 @@ export default function HomePageContent({
       className={`${styles.main} ${inter.className}`}
     >
       <div className="flex-grow h-fit bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 flex flex-col">
-        <Header {...{ allCollections, ourPurpose }} />
+        <Header
+          {...{
+            allCollections,
+            ourPurpose,
+            bannerSpringProps: {
+              from: { opacity: 0, transform: "translate3d(-10%, 0, 0)" },
+              to: { opacity: 1, transform: "translate3d(0%, 0, 0)" },
+              config: {
+                mass: 1,
+                tension: 280,
+                friction: 50,
+              },
+            },
+          }}
+        />
 
         <div className="flex-grow flex flex-col justify-center items-center h-full overflow-hidden">
           <div className="flex-grow flex flex-col justify-center text-center text-white">

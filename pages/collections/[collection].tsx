@@ -72,9 +72,14 @@ export default function Collection({
     <div className="box-border bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
       <Header {...{ allCollections, ourPurpose }} />
       <div className="flex flex-col items-center justify-center min-h-screen py-2 px-4">
-        <main className="flex flex-col items-center w-full px-20 text-center">
-          <div className="flex flex-col items-center w-full px-20 text-center py-8">
-            <h1 className="text-6xl font-bold">{thisCollection.title}</h1>
+        <main className="flex flex-col items-center w-full px-8 text-center">
+          <div className="flex flex-col items-center w-full text-center py-8">
+            <h1
+              className="text-6xl font-bold pb-4"
+              style={{ lineHeight: "1.2em" }}
+            >
+              {thisCollection.title}
+            </h1>
 
             <p className="mt-3 text-2xl">{clean(thisCollection.description)}</p>
           </div>
@@ -83,14 +88,14 @@ export default function Collection({
           {thisCollection.items.map(
             ({ description, preview_image_url, primary_store_url, title }) => (
               <div key={title} className="item py-8 w-full">
-                <div className="flex flex-col items-center w-full flex-1 px-20 text-center">
+                <div className="flex flex-col items-center w-full flex-1 px-8 text-center">
                   <a
                     href={primary_store_url}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <h1 className="title">{title}</h1>
-                    <div className="p-4">
+                    <div className="py-4">
                       <Image
                         width={640}
                         height={640}

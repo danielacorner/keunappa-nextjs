@@ -22,17 +22,23 @@ export default function Purpose({ ourPurpose, allCollections }) {
         <Header {...{ allCollections, ourPurpose }} />
         <main>
           <div className="flex flex-col items-center justify-start min-h-screen py-8 px-16">
-            <h1 className="text-6xl font-bold">{ourPurpose.title}</h1>
+            <h1 className="text-4xl font-bold break-keep text-center">
+              {ourPurpose.title}
+            </h1>
             {/* show ourPurpose.image */}
-            <Image
-              src={ourPurpose.image}
-              alt={ourPurpose.title}
-              className="w-full h-full"
-              fill={true}
-              style={{
-                objectFit: "cover",
-              }}
-            />
+            <div className="w-full pt-10">
+              <Image
+                src={ourPurpose.image}
+                alt={ourPurpose.title}
+                width={496}
+                height={496}
+                style={{
+                  objectFit: "contain",
+                  width: "100%",
+                  height: "auto",
+                }}
+              />
+            </div>
             <pre className="mt-12 text-2xl w-full whitespace-break-spaces">
               {ourPurpose.description}
             </pre>
