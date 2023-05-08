@@ -77,7 +77,6 @@ export function getCollectionBySlug(slug: string, fields: string[] = []) {
   const fullPath = join(collectionsDirectory, `${realSlug}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
-  console.log("⭐🎈  file: api.ts:51  getCollectionBySlug  data:", data);
 
   type Items = {
     [key: string]: string;
@@ -119,7 +118,6 @@ export function getCollectionBySlug(slug: string, fields: string[] = []) {
       items[field] = data[field];
     }
   });
-  console.log("⭐🎈  file: api.ts:57  getCollectionBySlug  items:", items);
 
   return items;
 }

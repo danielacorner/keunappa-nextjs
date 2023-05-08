@@ -1,6 +1,11 @@
 import { Footer } from "../../components/Footer";
-import { getAllCollections, getCollectionBySlug } from "../api/api";
+import {
+  getAllCollections,
+  getCollectionBySlug,
+  getItemBySlug,
+} from "../api/api";
 import { Header } from "../../components/Header";
+import Image from "next/image";
 
 export async function getStaticPaths() {
   const allCollections = getAllCollections(["title", "slug"]);
@@ -28,9 +33,22 @@ export async function getStaticProps({ params }) {
     "items",
     "order",
   ]);
+  const itemsInThisCollection = (
+    thisCollection.items as unknown as string[]
+  ).map((itemTitle) =>
+    getItemBySlug(itemTitle, [
+      "title",
+      "primary_store_url",
+      "preview_image_url",
+      "description",
+    ])
+  );
   return {
     props: {
-      thisCollection,
+      thisCollection: {
+        ...thisCollection,
+        items: itemsInThisCollection,
+      },
       allCollections,
     },
   };
@@ -59,14 +77,27 @@ export default function Collection({ thisCollection, allCollections }) {
             </div>
           </div>
         </main>
-        {thisCollection.items.map((itemName) => (
-          <div
-            key={itemName}
-            className="flex flex-col items-center w-full flex-1 px-20 text-center"
-          >
-            {itemName}
-          </div>
-        ))}
+        {thisCollection.items.map(
+          ({ description, preview_image_url, primary_store_url, title }) => (
+            <div key={title} className="item">
+              <div className="flex flex-col items-center w-full flex-1 px-20 text-center">
+                <a
+                  className="hover_underline"
+                  href={primary_store_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                ></a>
+                {title}
+                <Image
+                  fill={true}
+                  style={{ objectFit: "contain" }}
+                  src={preview_image_url}
+                  alt={`${title}: ${description}`}
+                />
+              </div>
+            </div>
+          )
+        )}
         <Footer />
       </div>
     </div>
