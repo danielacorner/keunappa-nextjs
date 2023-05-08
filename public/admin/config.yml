@@ -12,42 +12,50 @@ media_folder: public/img
 public_folder: img
 collections:
   - name: "items"
-    label: "Items"
+    label: "항목 (Items)"
     folder: _items
     create: true
     fields:
-      - { name: title, label: 제목, widget: string }
-      - { name: primary_store_url, label: 상점 페이지 URL, widget: string }
+      - { name: title, label: 제목 (Title), widget: string }
+      - {
+          name: primary_store_url,
+          label: 상점 페이지 URL (Primary store URL),
+          widget: string,
+        }
       - {
           name: preview_image_url,
-          label: 미리보기 이미지 URL,
+          label: 미리보기 이미지 URL (Preview Image URL),
           widget: string,
           hint: "이 항목의 미리보기 이미지로 사용됩니다.",
         }
       - {
           name: more_preview_image_urls,
-          label: 더 많은 미리보기 이미지 URL,
+          label: 더 많은 미리보기 이미지 URL (More Preview Image URLs),
           widget: list,
           field:
-            { name: more_preview_image_url, label: Ingredient, widget: string },
+            {
+              name: more_preview_image_url,
+              label: 보조 이미지 URL (Secondary Image URL),
+              widget: string,
+            },
           hint: "항목 세부정보 페이지에서 이 항목에 대한 추가 미리보기 이미지로 사용됩니다.",
         }
-      - { name: description, label: Description, widget: markdown }
-      - { name: price, label: Price, widget: number, required: false }
+      - { name: description, label: 설명 (Description), widget: markdown }
+      - { name: price, label: Price (가격), widget: number, required: false }
   - name: "collections"
-    label: "컬렉션"
+    label: "컬렉션 (Collections)"
     folder: _collections
     create: true
     fields:
       - {
           name: title,
-          label: 컬렉션 URL 제목,
+          label: 컬렉션 URL 제목 (Collection URL Title)),
           widget: string,
           hint: "이 컬렉션의 URL을 생성하는 데 사용됩니다. 고유해야 하며 공백이나 특수 문자를 포함하지 않아야 합니다.",
         }
       - {
           name: title_display,
-          label: 컬렉션 표시 제목,
+          label: 컬렉션 표시 제목 (Collection Display Title)),
           widget: string,
           required: false,
           hint: "이 컬렉션의 제목으로 사용됩니다.",
@@ -55,7 +63,7 @@ collections:
       - { name: description, label: 컬렉션 설명, widget: markdown }
       - {
           name: items,
-          label: 수집품,
+          label: 수집품 (Items),
           widget: relation,
           collection: items,
           multiple: true,
@@ -65,14 +73,14 @@ collections:
         }
       - {
           name: preview_image_url,
-          label: 미리보기 이미지 URL,
+          label: 미리보기 이미지 URL (Preview Image URL),
           widget: string,
           hint: "이 컬렉션의 미리보기 이미지로 사용됩니다.",
           required: false,
         }
       - {
           name: order,
-          label: 순서,
+          label: 순서 (Order),
           widget: number,
           hint: "홈페이지에서 컬렉션을 주문하는 데 사용됩니다. 번호가 가장 낮은 컬렉션이 첫 번째가 됩니다.",
           required: false,
@@ -81,10 +89,10 @@ collections:
   # add a collection with a single item "우리의 목적" which has a rich text description
   # and a single image
   - name: "purpose"
-    label: "목적"
+    label: "목적 (Purpose)"
     folder: _purpose
     create: true
     fields:
-      - { name: title, label: 제목, widget: string }
-      - { name: image, label: Image, widget: image }
-      - { name: description, label: 설명, widget: markdown }
+      - { name: title, label: 제목 (Title), widget: string }
+      - { name: image, label: 영상 (Image), widget: image }
+      - { name: description, label: 설명 (Description), widget: markdown }

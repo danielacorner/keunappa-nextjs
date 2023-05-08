@@ -22,7 +22,9 @@ export default function Purpose({ ourPurpose, allCollections }) {
         <main>
           <div className="flex flex-col items-center justify-start min-h-screen py-8 px-16">
             <h1 className="text-6xl font-bold">{ourPurpose.title}</h1>
-            <p className="mt-12 text-2xl">{ourPurpose.description}</p>
+            <pre className="mt-12 text-2xl w-full whitespace-break-spaces">
+              {ourPurpose.description}
+            </pre>
           </div>
         </main>
       </div>

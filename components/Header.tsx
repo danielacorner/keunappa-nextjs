@@ -32,7 +32,7 @@ export function Header({
           <div className="text-white text-2xl font-bold">RASH PL.</div>
         </Link>
         <nav>
-          <ul className="flex space-x-6">
+          <ul className="flex flex-wrap space-x-6">
             {allCollections
               .sort((a, b) => a.order - b.order)
               .map(({ title, title_display }) => (
@@ -42,11 +42,13 @@ export function Header({
                   </Link>
                 </li>
               ))}
+            <li className="click_padding">
+              <Link href="/purpose" className="hover_zoom">
+                <div className="text-white font-bold">{ourPurpose.title}</div>
+              </Link>
+            </li>
           </ul>
         </nav>
-        <Link href="/목적" className="hover_zoom">
-          <div className="text-white font-bold">{ourPurpose.title}</div>
-        </Link>
       </header>
     </>
   );
