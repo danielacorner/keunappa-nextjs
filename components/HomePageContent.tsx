@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Header } from "./Header";
 import { Footer } from "./Footer";
+import BlurImage from "./BlurImage";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +26,9 @@ export default function HomePageContent({
         <div className="flex-grow flex flex-col justify-center items-center h-full overflow-hidden">
           <div className="flex-grow flex flex-col justify-center text-center text-white">
             <h1 className="text-6xl font-bold">RASH PL.</h1>
-            <p className="text-xl mt-4">
-              Fashion that{"'"}s both stylish and practical.
-            </p>
+            <h2 className="text-xl mt-4">
+              스타일리시함과 실용성을 동시에 갖춘 패션.
+            </h2>
           </div>
           <LoopingImages images={images_row_1} className="items-end" />
           <LoopingImages images={images_row_2} reverse={true} />
@@ -81,18 +82,12 @@ function ImageInRow({ index, url, image_url, title }) {
       className={`relative inline-block m-2 box-border h-80 w-36 ${styles.hover_highlight}`}
     >
       <Link href={url}>
-        <Image
+        <BlurImage
           src={image_url}
           alt={title}
           // width={128}
           // height={128}
-          fill={true}
-          sizes={"(max-width: 768px) 100vw, 768px"} // width={"100"}
-          style={{
-            objectFit: "cover",
-          }}
-          quality={100}
-          className="rounded-lg overflow-hidden"
+          imgClassName="rounded-lg overflow-hidden"
         />
       </Link>
     </div>
