@@ -44,11 +44,11 @@ export async function getStaticProps({ params }) {
       "description",
     ])
   );
-  const ourPurpose = await getOurPurpose();
   console.log(
-    "⭐🎈  file: [collection].tsx:48  getStaticProps  ourPurpose:",
-    ourPurpose
+    "⭐🎈  file: [collection].tsx:47  getStaticProps  itemsInThisCollection:",
+    itemsInThisCollection
   );
+  const ourPurpose = await getOurPurpose();
 
   return {
     props: {
@@ -67,7 +67,10 @@ export default function Collection({
   allCollections,
   ourPurpose,
 }) {
-  console.log("⭐🎈  file: [collection].tsx:66  ourPurpose:", ourPurpose);
+  console.log(
+    "⭐🎈  file: [collection].tsx:70  thisCollection:",
+    thisCollection
+  );
   return (
     <div className="box-border bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
       <Header {...{ allCollections, ourPurpose }} />

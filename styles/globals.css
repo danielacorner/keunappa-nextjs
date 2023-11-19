@@ -35,12 +35,19 @@
   position: relative;
   /* transform: scale(1); */
 }
-.hover_underline:after {
+li.active {
+  color: #000 !important;
+  pointer-events: none;
+  font-weight: bold;
+  position: relative;
+}
+.hover_underline:after,
+li.active:after {
   transition: transform 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
   position: absolute;
   content: "";
-  height: 1px;
-  background: currentColor;
+  height: 2px;
+  background: #fff;
   bottom: 0px;
   width: 100%;
   left: 0%;
@@ -50,7 +57,8 @@
   padding: 0.5em;
   margin: -0.5em;
 }
-.hover_underline:hover:after {
+.hover_underline:hover:after,
+li.active:after {
   transition: transform 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
   transform: scaleX(1);
 }

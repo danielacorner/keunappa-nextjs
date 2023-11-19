@@ -1,8 +1,11 @@
 import Link from "next/link";
 import AnimatedImage from "./AnimatedImage";
 import styles from "../styles/Home.module.css";
+import { useRouter } from "next/router";
 
 export function Header({ allCollections, bannerSpringProps = {}, ourPurpose }) {
+  const router = useRouter();
+  console.log("⭐🎈  file: Header.tsx:8  Header  router:", router);
   return (
     <>
       <AnimatedImage
@@ -23,14 +26,27 @@ export function Header({ allCollections, bannerSpringProps = {}, ourPurpose }) {
           <ul className="max-w-7xl flex flex-wrap space-x-6 gap-y-4 justify-end">
             {allCollections
               .sort((a, b) => a.order - b.order)
-              .map(({ title, title_display }) => (
-                <li key={title} className="click_padding hover_underline">
-                  <Link href={`/collections/${title}`}>
-                    <span className="text-white">{title_display ?? title}</span>
-                  </Link>
-                </li>
-              ))}
-            <li className="click_padding">
+              .map(({ title, title_display }) => {
+                const active = decodeURIComponent(router.asPath).includes(
+                  title
+                );
+
+                return (
+                  <li
+                    key={title}
+                    className={`click_padding hover_underline ${
+                      active ? "active" : ""
+                    }`}
+                  >
+                    <Link href={`/collections/${title}`}>
+                      <span className="text-white">
+                        {title_display ?? title}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            <li className="click_padding hover_underline">
               <Link href="/purpose" className="hover_zoom">
                 <div className="text-white font-bold">{ourPurpose.title}</div>
               </Link>
